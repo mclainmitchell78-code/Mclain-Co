@@ -701,8 +701,32 @@
     font-size: 0.9rem;
     font-weight: 300;
     font-style: italic;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem;
   }
+  .review-text.clamp {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .review-text.clamp.expanded {
+    display: block;
+    overflow: visible;
+  }
+  .read-more-btn {
+    background: none;
+    border: none;
+    color: var(--sky);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 1rem;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .read-more-btn:hover { color: var(--ice); }
   .review-author {
     font-weight: 600;
     font-size: 0.85rem;
@@ -922,8 +946,8 @@
       </div>
       <div class="hero-stats">
         <div class="stat-card">
-          <div class="stat-number">100s</div>
-          <div class="stat-label">Windows Cleaned</div>
+          <div class="stat-number">Free</div>
+          <div class="stat-label">Quotes</div>
         </div>
         <div class="stat-card">
           <div class="stat-number">5★</div>
@@ -1078,13 +1102,15 @@
   <div class="testimonials-grid">
     <div class="review-card">
       <div class="stars">★★★★★</div>
-      <p class="review-text">"Mitchell is a hard working professional who did a great job power washing the siding on my father's house. He also does concrete which is how I met him while cleaning a driveway and all the walkways at a neighbors house. As soon as I met him I knew he was the right person to help me with my father's house. If you want someone who will do a good job for a fair price then Mitchell is your man. He does great work and you will not regret using him on any of your team power washing needs."</p>
+      <p class="review-text clamp">"Mitchell is a hard working professional who did a great job power washing the siding on my father's house. He also does concrete which is how I met him while cleaning a driveway and all the walkways at a neighbors house. As soon as I met him I knew he was the right person to help me with my father's house. If you want someone who will do a good job for a fair price then Mitchell is your man. He does great work and you will not regret using him on any of your team power washing needs."</p>
+      <button class="read-more-btn" onclick="toggleReview(this)">Read more ↓</button>
       <div class="review-author">Brian B.</div>
       <div class="review-loc">Verified Customer</div>
     </div>
     <div class="review-card">
       <div class="stars">★★★★★</div>
-      <p class="review-text">"Mitchell did an excellent job power washing my driveway, sidewalks, and two additional patio areas. He was on time when he gave me a very reasonably priced quote, arrived at the promised times when power washing everything (which took hours). I was so impressed by his work ethic, his pricing, and his willingness to go above-and-beyond that I recommended him to my 90-year-old godmother, and she used his services for both power washing and her exterior windows. I recommend Mitchell Mclain and Mclain and Co. without reservation!"</p>
+      <p class="review-text clamp">"Mitchell did an excellent job power washing my driveway, sidewalks, and two additional patio areas. He was on time when he gave me a very reasonably priced quote, arrived at the promised times when power washing everything (which took hours). I was so impressed by his work ethic, his pricing, and his willingness to go above-and-beyond that I recommended him to my 90-year-old godmother, and she used his services for both power washing and her exterior windows. I recommend Mitchell Mclain and Mclain and Co. without reservation!"</p>
+      <button class="read-more-btn" onclick="toggleReview(this)">Read more ↓</button>
       <div class="review-author">Victoria T.</div>
       <div class="review-loc">Verified Customer</div>
     </div>
@@ -1154,6 +1180,13 @@ form.addEventListener('submit', function(e){
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Read more toggle
+  function toggleReview(btn) {
+    const p = btn.previousElementSibling;
+    const expanded = p.classList.toggle('expanded');
+    btn.textContent = expanded ? 'Read less ↑' : 'Read more ↓';
+  }
+
   // Form submit
   function handleSubmit(e) {
     e.preventDefault();
